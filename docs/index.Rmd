@@ -20,7 +20,10 @@ library(tidyverse)
 ggplot(data = mpg, aes(x = displ, y = hwy)) +
     geom_point(aes(color = class))
 ```
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0abe3a7477ff299108b7f67f01df532083f8b8ff
 ## Shape Scatterplot
 
 ```{r shape}
