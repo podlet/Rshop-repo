@@ -16,20 +16,6 @@ library(tidyverse)
 
 ## Scatterplot
 
-```{r mpg}
-
-
-# data()
-?mpg
-mpg
-
-g <- ggplot(data = mpg, aes(x = displ, y = hwy))
-g + geom_point()
-
-
-```
-
-
 ```{r color}
 ggplot(data = mpg, aes(x = displ, y = hwy)) +
     geom_point(aes(color = class))
