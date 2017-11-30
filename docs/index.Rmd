@@ -14,9 +14,16 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 ```
 
-## Scatterplot
+## Color Scatterplot
 
 ```{r color}
 ggplot(data = mpg, aes(x = displ, y = hwy)) +
     geom_point(aes(color = class))
+```
+
+## Shape Scatterplot
+
+```{r shape}
+ggplot(data = mpg, aes(x = displ, y = hwy, shape = class)) +
+    geom_point()
 ```
