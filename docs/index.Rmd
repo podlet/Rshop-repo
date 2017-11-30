@@ -14,6 +14,69 @@ knitr::opts_chunk$set(echo = FALSE)
 library(tidyverse)
 ```
 
+## Gapminder
+
+```{r}
+
+gapminder<-readr::read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder.csv")
+
+## useful functions to get to know your data:
+head(gapminder) ## show the first 6 rows of the data
+tail(gapminder) ## show the last 6 rows of the data
+
+head(gapminder, 30)
+
+## check out the strucutre of your data
+str(gapminder)
+
+##column names
+names(gapminder)
+
+##dimensions of the data
+dim(gapminder)
+ncol(gapminder)
+nrow(gapminder)
+
+c(nrow(gapminder), ncol(gapminder))
+
+summary(gapminder)
+
+## For everything above we were operating on the the whole gapminder dataset.
+
+head(gapminder$lifeExp)
+
+```
+
+## Actually working with dyplr
+
+```{r}
+
+filter(gapminder, lifeExp < 29)
+
+filter(gapminder, country =="Mexico")
+
+filter(gapminder, country == "Sweden")
+
+Sweden <- filter(gapminder, country == "Sweden")
+
+mean(Sweden$lifeExp)
+
+## pipe operator %>%
+## command-shift-M = %>% 
+
+gapminder %>% head(3)
+
+## instead of using 
+
+head(gapminder, 3)
+
+## will give you the same output
+
+gapminder %>% filter(country== "Sweden") %>% 
+  summarize(mean_lifeExp = mean(lifeExp))
+
+```
+
 ## Color Scatterplot
 
 ```{r color}
