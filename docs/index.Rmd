@@ -34,4 +34,24 @@ ggplot(data = mpg, aes(x = displ, y = hwy, shape = class)) +
 ggplot(data = mpg, aes(x = cty, y = hwy, size = class, color = fl)) + geom_point(alpha = 0.2)
 
 ```
+
+## Jitterplot
+
+```{r geom_examples}
   
+ggplot(mpg, aes(x = drv,y = hwy)) + geom_jitter()
+
+```
+
+## Scatterplot with Line
+
+```{r smooth line}
+
+ggplot(data = mpg) + 
+  geom_point(aes(x = displ, y = hwy), color="orange") +
+  geom_smooth(aes(x = displ, y = hwy), color="black") + 
+  labs(x = "Highway MPG", 
+       y = "Engine Displacement (L)") + 
+  theme_bw() + 
+  theme(text=element_text(size = 14)) 
+```
