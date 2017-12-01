@@ -76,6 +76,98 @@ gapminder %>% filter(country== "Sweden") %>%
   summarize(mean_lifeExp = mean(lifeExp))
 
 ```
+## Select() by columns
+```{r}
+
+## Add use of the pipe operator
+
+gapminder %>%
+  select(year,lifeExp) %>%
+  tail(6)
+
+## Combine what we've learned
+
+gapminder %>%
+  filter(country =="Cambodia") %>%
+  select(country, year, pop, gdpPercap)
+
+## or use instead...it will give the same result
+
+gapminder %>%
+  filter(country =="Cambodia") %>%
+  select (-continent, -lifeExp)
+
+## a few more things with filter
+
+gapminder %>%
+  filter(country =="Mexico",
+         year == 2002)
+
+## 'mutate()' to add columns
+
+gapminder %>%
+  mutate(gdp = pop*gdpPercap)
+
+## Add index column
+
+gapminder %>%
+  mutate(index = 1:nrow(gapminder)) %>%
+  tail()
+
+## Add index column and add a colum
+
+gapminder %>%
+  mutate(gdp = pop*gdpPercap) %>%
+  mutate(index = 1:nrow(gapminder)) %>%
+  tail()
+
+## Pick two countries only, using %in% operatory lets you filer multiple thing within a c function i.e. c()
+
+gapminder %>%
+  filter(country %in% c("Egypt", "Vietnam"))
+
+
+## Find the maximum gdpPercap of Egypt and Vietnam in a new column
+
+gapminder %>%
+  filter(country %in% c("Egypt", "Vietnam")) %>%
+  mutate(max_gdpPercap = max(gdpPercap))
+
+
+## Use group_by() function so that we can get the maximum from each of two countries
+
+  gapminder %>%
+  filter(country %in% c("Egypt", "Vietnam")) %>%
+  group_by(country) %>%
+  summarize(maxx_gdpPercap = max(gdpPercap))
+
+## Do the same but will all countries
+
+ gapminder %>%
+  group_by(country) %>%
+  summarize(max_gdpPercap = max(gdpPercap))
+
+ ## Keep the year associated with that max_gdpPercap
+
+  gapminder %>%
+    group_by(country) %>%
+    mutate(max_gdpPercap = max(gdpPercap)) %>%
+    filter(max_gdpPercap == gdpPercap)
+
+  ## Arrange()
+
+  gapminder %>%
+    group_by(country) %>%
+    mutate(max_gdpPercap = max(gdpPercap)) %>%
+    filter(max_gdpPercap == gdpPercap) %>%
+    arrange(max_gdpPercap)
+
+  gapminder %>%
+    group_by(country) %>%
+    mutate(max_gdpPercap = max(gdpPercap)) %>%
+    filter(max_gdpPercap == gdpPercap) %>%
+    arrange(desc(max_gdpPercap))
+```
 
 ## Color Scatterplot
 
